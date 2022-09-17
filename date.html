@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jquery ui datepicker disable dates after today</title>
+</head>
+<link href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<body>
+<h2>JQuery UI DatePicker Disable Dates After Today</h2>
+<p>Date: <input type="text" id="datepicker" /></p>
+<!-- Previous Month -->
+<?php
+    $date = "2020-01-11";
+    $newdate = date("Y-m-d", strtotime ( '-1 month' , strtotime ( $date ) )) ;
+    echo $newdate;
+?>
+
+<?php
+    // Today being 2012-05-31
+//All the following return 2012-04-30
+echo date('Y-m-d', strtotime("last day of -1 month"));
+echo date('Y-m-d', strtotime("last day of last month"));
+echo date_create("last day of -1 month")->format('Y-m-d'); 
+
+// All the following return 2012-04-01
+echo date('Y-m-d', strtotime("first day of -1 month")); 
+echo date('Y-m-d', strtotime("first day of last month"));
+echo date_create("first day of -1 month")->format('Y-m-d');
+?>
+
+<script type="text/javascript">
+    $(function() {
+        $( "#datepicker" ).datepicker({  minDate: new Date() });
+    });
+</script>
+</body>
+</html>
